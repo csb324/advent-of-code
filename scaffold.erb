@@ -1,0 +1,23 @@
+testfile = File.open('input/day<%= number %>-test.txt')
+file = File.open('input/day<%= number %>.txt')
+
+class Day<%= number %>
+  def initialize(f)
+    @data = f.readlines.map do |line|
+      # maybe do other stuff too 
+      line.chomp
+      #chomp chomp chomp
+    end
+  end
+
+  def part_one
+  end
+
+  def part_two
+  end  
+end
+
+Day<%= number %>.new(testfile).part_one
+# Day<%= number %>.new(file).part_one
+# Day<%= number %>.new(testfile).part_two
+# Day<%= number %>.new(file).part_two
