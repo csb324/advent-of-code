@@ -10,11 +10,13 @@ class Day7
     end
 
     @crab_positions = lines[0].split(",").map(&:to_i)
+
+    # @crab_positions = make_fake_crabs
   end
 
   def make_fake_crabs # used this to test a bunch of theories
-    (0...10).map do |i|
-      rand(30)
+    (0...45).map do |i|
+      rand(200)
     end
   end
 
@@ -64,29 +66,40 @@ class Day7
 
   def part_two
     min_fuel = 1000000000000
-    theory = (@crab_positions.reduce(&:+) / @crab_positions.length) # the mean
-    
+    theory = (@crab_positions.reduce(&:+) / (@crab_positions.length * 1.0)) # the mean
+
+    theory_int = theory.round
+
     # the answer was pretty consistently within 1 of the mean,
     # so i brute forced it with a small range
-    ((theory - 3)...(theory + 3)).each do |n|
+    best_index = 0
+    ((theory_int - 3)...(theory_int + 3)).each do |n|
       fuel = get_part_two_fuel(n)
       min_fuel = [min_fuel, fuel].min
 
       indicator = ""
       if(min_fuel == fuel)
-        indicator = "***"
+        best_index = n
       end
-      puts "Aligning at #{n} would take: #{fuel} fuel. #{indicator}"
+      # puts "Aligning at #{n} would take: #{fuel} fuel. #{indicator}"
     end
 
-    puts "THE ANSWER IS: #{min_fuel}"
+    if(get_part_two_fuel(theory_int) == min_fuel)
+      puts "yepppp."
+    else
+      puts "------- NOPE -------. Actually, #{best_index}"
+    end
+
+    puts "theory was: #{theory} rounded to #{theory_int} and the fuel for that was #{get_part_two_fuel(theory_int)}"
+
+    # puts "THE ANSWER IS: #{min_fuel}"
   end  
 end
 
 # Day7.new(testfile).part_one
 # Day7.new(file).part_one
 # 20.times do 
-#   Day7.new(testfile).part_two
+  # Day7.new(testfile).part_two
 # end
 
 Day7.new(file).part_two
