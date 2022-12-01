@@ -1,1 +1,4 @@
 *.txt
+node_modules
+2022-built
+package-lock.json

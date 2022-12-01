@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "outDir": "./2022-built",
+    "allowJs": true,
+    "target": "es5"
+  },
+  "include": ["./2022-src/**/*"]
+}
