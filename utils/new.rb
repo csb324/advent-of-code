@@ -3,8 +3,6 @@ require('erb')
 
 class Advent 
 
-
-
   def initialize(day)
 
     File.open("./day#{day}.rb", "wb") do |file|
